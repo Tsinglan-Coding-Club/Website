@@ -9,6 +9,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Get Theme
+        run: git clone https://github.com/volantis-x/hexo-theme-volantis/ themes/volantis
+
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -29,8 +32,6 @@ jobs:
             ${{ runner.OS }}-npm-cache
       - name: Install Dependencies
         run: npm install
-      - name: Get Theme
-        run: git clone https://github.com/volantis-x/hexo-theme-volantis/ themes/volantis
       - name: Build
         run: npm run build
       - name: Upload Pages artifact
